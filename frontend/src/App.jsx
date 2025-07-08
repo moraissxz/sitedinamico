@@ -483,3 +483,96 @@ const styles = {
     textAlign: "center",
   },
 };
+
+const styles = {
+  header: {
+    backgroundColor: "#4CAF50", // cor atualizada
+    padding: "16px 24px",
+    display: "flex",
+    flexDirection: "column", // altera de linha para coluna
+    alignItems: "center", // centraliza horizontalmente
+    gap: 12,
+    color: "#fff",
+    boxShadow: "0 3px 6px rgba(0,0,0,0.15)",
+  },
+  logo: {
+    height: 60,
+    width: "auto",
+  },
+  headerTitle: {
+    fontSize: 24,
+    fontWeight: "700",
+    margin: 0,
+    color: "#FFFFFF", // branco fica legível com o verde claro
+    textAlign: "center",
+  },
+  main: {
+    minHeight: "calc(100vh - 92px)",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#F4F7F3",
+    padding: 24,
+  },
+  card: {
+    backgroundColor: "#FFFFFF",
+    padding: 36,
+    borderRadius: 10,
+    width: 420,
+    boxShadow: "0 5px 15px rgba(0,0,0,0.1)",
+  },
+  tabs: {
+    display: "flex",
+    marginBottom: 30,
+  },
+  tabButton: {
+    flex: 1,
+    padding: 14,
+    cursor: "pointer",
+    backgroundColor: "#C8E6C9", // verde bem claro
+    border: "none",
+    borderBottom: "3px solid transparent",
+    fontWeight: "600",
+    fontSize: 17,
+    transition: "background-color 0.3s, border-color 0.3s",
+    borderRadius: "5px 5px 0 0",
+    marginRight: 6,
+    color: "#2E7D32",
+  },
+  tabActive: {
+    backgroundColor: "#FFFFFF",
+    borderBottom: "3px solid #388E3C",
+    fontWeight: "700",
+    color: "#388E3C",
+  },
+  section: {},
+  input: {
+    width: "100%",
+    padding: 14,
+    marginBottom: 18,
+    borderRadius: 5,
+    border: "1.5px solid #A5D6A7",
+    fontSize: 17,
+    boxSizing: "border-box",
+    outlineColor: "#66BB6A",
+    color: "#2E7D32",
+  },
+  button: {
+    width: "100%",
+    padding: 16,
+    backgroundColor: "#388E3C",
+    border: "none",
+    borderRadius: 6,
+    color: "#E8F5E9",
+    fontWeight: "700",
+    fontSize: 17,
+    cursor: "pointer",
+    transition: "background-color 0.3s",
+  },
+  message: {
+    marginTop: 16,
+    fontWeight: "600",
+    textAlign: "center",
+  },
+};
+
