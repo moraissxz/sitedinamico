@@ -9,12 +9,12 @@ app.use(cors());
 app.use(express.json());
 
 const pool = new pg.Pool({
-  user: "postgres",
-  host: "localhost",
-  database: "ifms_exame",
-  password: "postgres",
-  port: 5432,
+  connectionString: process.env.DB_HOST,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
+
 
 function limparNumeros(valor) {
   return valor.replace(/\D/g, "");
