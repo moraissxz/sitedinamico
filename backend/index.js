@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import pg from "pg";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 const app = express();
 app.use(cors());
@@ -15,6 +16,7 @@ const pool = new pg.Pool({
   },
 });
 
+const JWT_SECRET = process.env.JWT_SECRET || "segredo_super_seguro";
 
 function limparNumeros(valor) {
   return valor.replace(/\D/g, "");
@@ -118,10 +120,35 @@ app.post("/api/login", async (req, res) => {
       return res.status(400).json({ message: "Senha incorreta." });
     }
 
-    res.status(200).json({ message: `Login bem-sucedido. Bem-vindo, ${usuario.nome}!` });
+    const token = jwt.sign(
+      { id: usuario.id, nome: usuario.nome, email: usuario.email },
+      JWT_SECRET,
+      { expiresIn: "1d" }
+    );
+
+    res.status(200).json({
+      message: `Login bem-sucedido. Bem-vindo, ${usuario.nome}!`,
+      token,
+      nome: usuario.nome,
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Erro interno no servidor." });
+  }
+});
+
+app.get("/api/validar-token", (req, res) => {
+  const authHeader = req.headers.authorization;
+  if (!authHeader) {
+    return res.status(401).json({ message: "Token ausente." });
+  }
+
+  const token = authHeader.split(" ")[1];
+  try {
+    const payload = jwt.verify(token, JWT_SECRET);
+    res.status(200).json({ ok: true, nome: payload.nome });
+  } catch (err) {
+    res.status(401).json({ message: "Token inválido ou expirado." });
   }
 });
 
